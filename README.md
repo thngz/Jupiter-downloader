@@ -14,3 +14,7 @@ This CLI program will download https://jupiter.err.ee/ shows and films directly 
 3. pip install requirements.txt
 4. python main.py
 5. Enjoy 
+
+## Roadmap
+* Add support for downloading playlists
+* Make the download/ffmpeg "building" faster
