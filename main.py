@@ -6,11 +6,14 @@ import time
 import re
 import ffmpeg
 
+
+
 t1 = time.time()
 url = input("Sisesta Jupiteri URL: ")
 #get the file name
 filename = input("Sisesta soovitud failinimi (voib tuhjaks jatta) : ")
 filepath= input("Sisesta sobiva kausta asukoht (nt C:\Documents\) (voib tuhjaks jatta) : ")
+chromedriver_path = input("Sisesta Chromedriveri asukoht. Rohkem infot https://github.com/GeorgK1/Jupiter-downloader/ : " )
 if not filename:
     filename = url.rsplit('/', 1)[-1]
 
@@ -25,7 +28,7 @@ async def get_network_log(headless=True, filter="master.m3u8"):
             cap["loggingPrefs"] = {"performance": "ALL"}
             ### installed chromedriver.exe and identify path
             print("Jooksutan Chromedriveri")
-            driver = webdriver.Chrome(r"/usr/lib/chromium/chromedriver", desired_capabilities=cap, options=options) ### installed
+            driver = webdriver.Chrome(chromedriver_path, desired_capabilities=cap, options=options) ### installed
             # record and parse performance log
             driver.get(url)
             print("Filtreerin sisu")
