@@ -7,7 +7,13 @@ import re
 import ffmpeg
 
 t1 = time.time()
-url = input("Sisesta Jupiteri URL : ")
+url = input("Sisesta Jupiteri URL: ")
+#get the file name
+filename = input("Sisesta soovitud failinimi (voib tuhjaks jatta) : ")
+filepath= input("Sisesta sobiva kausta asukoht (nt C:\Documents\) (voib tuhjaks jatta) : ")
+if not filename:
+    filename = url.rsplit('/', 1)[-1]
+
 async def get_network_log(headless=True, filter="master.m3u8"):
     while True:
         try:
@@ -44,7 +50,7 @@ async def m3u8_to_mp4(m3u8_url):
     (
     ffmpeg
     .input(m3u8_url)
-    .output('out.mp4', absf='aac_adtstoasc')
+    .output(f"{filepath}{filename}.mp4", absf='aac_adtstoasc')
     .run()
     )
 
