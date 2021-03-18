@@ -10,9 +10,9 @@ This CLI program will download https://jupiter.err.ee/ shows and films directly 
 
 ## Installation
 1. git clone https://github.com/GeorgK1/Jupiter-downloader.git
-2. Open the cloned folder
-3. pip install requirements.txt
-4. python main.py
+2. Open the cloned folder in terminal
+3. inside terminal, write pip install requirements.txt
+4. after you can open the program by writing python main.py to the terminal
 5. Enjoy 
 
 ## Roadmap
