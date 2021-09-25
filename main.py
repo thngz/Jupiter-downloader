@@ -39,13 +39,13 @@ async def get_network_log(headless=True, filter="master.m3u8"):
             driver.close()
             print("Leiame master.m3u8 urli")
             #regex magic to find urls (returns a list of them, take the last one)
-            
+
             urls  = re.findall('(https.*?[^&"^>?!^$]+)', log[0]["message"])
             return urls[-1]
         except IndexError:
             print("Ei leidnud m3u8 faili, proovin uuesti")
             time.sleep(5)
-        
+
 #Convert m3u8 to mp4 using FFMPEG library and download the result
 async def m3u8_to_mp4(m3u8_url):
     print("Konventeerin MP4ks")
@@ -53,7 +53,7 @@ async def m3u8_to_mp4(m3u8_url):
     (
     ffmpeg
     .input(m3u8_url)
-    .output(f"{filepath}{filename}.mp4", absf='aac_adtstoasc')
+    .output(f"{filepath}{filename}.mp4", vcodec="copy", absf='aac_adtstoasc')
     .run()
     )
 
@@ -61,6 +61,6 @@ async def main():
     m3u8_url = await get_network_log()
     await m3u8_to_mp4(m3u8_url)
     print("Aega kulus", time.time() - t1, "sekundit")
-    
+
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
